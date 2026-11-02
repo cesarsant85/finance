@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f766e"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><title>Finanças Domésticas</title>
+<style>
+:root{--bg:#f4f6f5;--card:#fff;--tx:#14231c;--mut:#6b7a72;--bd:#e2e8e4;--pri:#0f766e;--prih:#0b5d57;--ok:#15803d;--okb:#dcfce7;--bad:#be123c;--badb:#ffe4e6;--warn:#b45309;--warnb:#fef3c7;--inf:#4338ca;--infb:#e0e7ff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1613;--card:#16211c;--tx:#e6efe9;--mut:#8fa399;--bd:#26362f;--pri:#2dd4bf;--prih:#5eead4;--ok:#4ade80;--okb:#14391f;--bad:#fb7185;--badb:#4a1623;--warn:#fbbf24;--warnb:#43320c;--inf:#a5b4fc;--infb:#24274f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e1613;--card:#16211c;--tx:#e6efe9;--mut:#8fa399;--bd:#26362f;--pri:#2dd4bf;--prih:#5eead4;--ok:#4ade80;--okb:#14391f;--bad:#fb7185;--badb:#4a1623;--warn:#fbbf24;--warnb:#43320c;--inf:#a5b4fc;--infb:#24274f;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx)}
+button,input,select{font:inherit;color:inherit}
+.w{max-width:1100px;margin:0 auto;padding:0 16px}
+header{background:var(--card);border-bottom:1px solid var(--bd);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 0}
+.logo{display:flex;gap:10px;align-items:center;font-weight:700;font-size:16px;margin-right:auto}
+.logo i{width:34px;height:34px;border-radius:10px;background:var(--pri);display:grid;place-items:center;color:#fff;font-style:normal}
+nav{display:flex;gap:4px;overflow-x:auto;width:100%;order:3}
+nav button{border:0;background:none;padding:8px 14px;border-radius:8px;color:var(--mut);font-weight:600;cursor:pointer;white-space:nowrap}
+nav button.on{background:var(--bg);color:var(--pri)}
+@media(min-width:760px){nav{width:auto;order:0}}
+.btn{border:1px solid var(--bd);background:var(--card);padding:8px 14px;border-radius:10px;cursor:pointer;font-weight:600}
+.btn:hover{background:var(--bg)}.btn.p{background:var(--pri);border-color:var(--pri);color:#fff}.btn.p:hover{background:var(--prih)}
+:root:not([data-theme="dark"]) .btn.p{color:#fff}.btn.d{color:var(--bad);border-color:var(--badb)}.btn.s{padding:4px 9px;font-size:12px}
+main{padding:20px 0 40px;display:grid;gap:16px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.bar .sp{flex:1}
+input,select{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:8px 10px;width:100%}
+input:focus,select:focus,button:focus-visible{outline:2px solid var(--pri);outline-offset:1px}
+.bar input,.bar select{width:auto}
+.mn{font-weight:700;text-transform:capitalize;min-width:150px;text-align:center}
+.g4{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.g2{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.c{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px}
+.c h3{margin:0 0 12px;font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
+.k b{display:block;font-size:24px;margin-top:4px}.k small{color:var(--mut)}
+.ok{color:var(--ok)}.bad{color:var(--bad)}
+.row{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--bd)}
+.row:first-child{border-top:0}.row .m{flex:1;min-width:0}.row .m b{display:block;overflow-wrap:anywhere}
+.row small{color:var(--mut)}
+.tag{display:inline-block;padding:1px 8px;border-radius:99px;font-size:11px;font-weight:700;margin-left:4px;border:0;background:var(--infb);color:var(--inf)}
+.st{cursor:pointer}.st.pago{background:var(--okb);color:var(--ok)}.st.pendente{background:var(--warnb);color:var(--warn)}.st.atrasado{background:var(--badb);color:var(--bad)}
+.pb{height:8px;background:var(--bd);border-radius:9px;overflow:hidden;margin:6px 0}.pb i{display:block;height:100%;background:var(--pri)}
+.cat{display:grid;grid-template-columns:110px 1fr 90px;gap:8px;align-items:center;font-size:13px;margin:6px 0}
+.hist{display:flex;gap:10px;align-items:flex-end;height:150px}
+.hist div{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end}
+.hist span{display:flex;gap:3px;align-items:flex-end;flex:1;width:100%;justify-content:center}
+.hist i{width:40%;max-width:22px;border-radius:4px 4px 0 0;min-height:2px}
+.empty{color:var(--mut);text-align:center;padding:24px}
+dialog{border:0;border-radius:16px;padding:0;width:min(460px,94vw);background:var(--card);color:var(--tx);box-shadow:0 20px 60px #0006}
+dialog::backdrop{background:#0008}
+dialog form,dialog .dc{padding:20px;display:grid;gap:12px}
+dialog h2{margin:0;font-size:18px}label{display:grid;gap:4px;font-size:12px;font-weight:600;color:var(--mut)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.acts{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.hint{font-size:12px;color:var(--mut);font-weight:400}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:10px 18px;border-radius:10px;opacity:0;pointer-events:none;transition:.25s;z-index:20}
+#toast.on{opacity:1}
+html,body{overscroll-behavior:none;-webkit-tap-highlight-color:transparent}
+input,select{font-size:16px;min-height:42px}.btn{min-height:40px}.btn.s{min-height:34px;padding:6px 12px}
+.row{flex-wrap:wrap}.row .m{flex:1 1 55%}
+.bk{background:var(--warnb);color:var(--warn);border-radius:12px;padding:12px 14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-weight:600}.bk span{flex:1}
+@media(max-width:759px){
+nav{position:fixed;left:0;right:0;bottom:0;top:auto;width:100%;order:0;background:var(--card);border-top:1px solid var(--bd);justify-content:space-around;padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px));z-index:6}
+nav button{flex:1;padding:12px 4px;font-size:13px}
+main{padding-bottom:96px}#toast{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+.top{padding:8px 0}.logo{font-size:15px}.k b{font-size:21px}.cat{grid-template-columns:90px 1fr 80px}
+.mn{min-width:0;flex:1}.bar .btn{min-height:44px}}
+@media(max-width:600px){dialog{margin:auto 0 0;width:100vw;max-width:100vw;max-height:92vh;border-radius:18px 18px 0 0}}
+</style></head>
+<body>
+<header><div class="w top">
+<div class="logo"><i>R$</i>Finanças Domésticas</div>
+<nav id="nav"></nav>
+<button class="btn p" onclick="txForm()">+ Lançamento</button>
+<button class="btn" onclick="menu()" aria-label="Dados">Dados</button>
+</div></header>
+<main class="w">
+<div class="bar"><button class="btn" onclick="mv(-1)" aria-label="Mês anterior">‹</button><span class="mn" id="mn"></span><button class="btn" onclick="mv(1)" aria-label="Próximo mês">›</button><button class="btn s" onclick="ym=cur();R()">Hoje</button></div>
+<section id="v"></section>
+</main>
+<dialog id="dlg"></dialog><div id="toast" role="status"></div>
+<script>
+const $=s=>document.querySelector(s),pad=n=>String(n).padStart(2,'0'),uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const CATS={despesa:['Moradia','Alimentação','Transporte','Saúde','Lazer','Educação','Serviços/Contas','Compras','Outros'],receita:['Salário','Investimentos','Freelance','Vendas','Outros']};
+const todayS=()=>{const d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())},cur=()=>todayS().slice(0,7);
+const addM=(m,k)=>{const[y,o]=m.split('-').map(Number),d=new Date(y,o-1+k,1);return d.getFullYear()+'-'+pad(d.getMonth()+1)};
+const dim=m=>{const[y,o]=m.split('-').map(Number);return new Date(y,o,0).getDate()};
+const dueOf=(m,day)=>m+'-'+pad(Math.min(day,dim(m)));
+const money=v=>(+v||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const fmtD=d=>d?d.split('-').reverse().join('/'):'';
+const mName=m=>{const[y,o]=m.split('-');return new Date(y,o-1,1).toLocaleDateString('pt-BR',{month:'long',year:'numeric'})};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const sum=a=>a.reduce((s,t)=>s+t.amount,0);
+let D={tx:[],rec:[],cards:[]},ym=cur(),tab='painel',F={q:'',type:'',st:''};
+const KEY='budget_v2';
+function save(){try{localStorage.setItem(KEY,JSON.stringify(D))}catch(e){}}
+function load(){let raw=null;try{raw=localStorage.getItem(KEY)}catch(e){}
+ if(raw){try{const d=JSON.parse(raw);if(d&&Array.isArray(d.tx))D={tx:d.tx,rec:d.rec||[],cards:d.cards||[]};return}catch(e){}}
+ let old=null;try{old=JSON.parse(localStorage.getItem('budget_transactions')||'null')}catch(e){}
+ if(Array.isArray(old)){D=migrate(old);save()}else{seed()}}
+function migrate(old){const R={},o={tx:[],rec:[],cards:[]};
+ old.forEach(t=>{if(!t||!t.dueDate)return;const n={id:t.id||uid(),desc:t.description||'',type:t.type,cat:t.category,amount:+t.amount||0,due:t.dueDate,paid:t.status==='pago'};
+  if(t.paidDate)n.paidDate=t.paidDate;
+  if(t.nature==='recorrente'){const k=n.desc.toLowerCase().trim()+'_'+n.type;let r=R[k];
+   if(!r){r=R[k]={id:uid(),desc:n.desc,type:n.type,cat:n.cat,amount:n.amount,day:+n.due.slice(8),start:n.due.slice(0,7),end:'',on:true,skip:[]};o.rec.push(r)}
+   if(n.due.slice(0,7)<r.start)r.start=n.due.slice(0,7);r.amount=n.amount;n.recId=r.id}
+  o.tx.push(n)});return o}
+function seed(){const m=cur();D.rec=[{id:'r1',desc:'Salário',type:'receita',cat:'Salário',amount:5500,day:5,start:m,end:'',on:true,skip:[]},{id:'r2',desc:'Aluguel',type:'despesa',cat:'Moradia',amount:1800,day:10,start:m,end:'',on:true,skip:[]}];
+ D.tx=[{id:'t1',desc:'Supermercado',type:'despesa',cat:'Alimentação',amount:420,due:dueOf(m,15),paid:true}];save()}
+function gen(m){let n=0;D.rec.forEach(r=>{if(!r.on||r.start>m||(r.end&&m>r.end)||r.skip.includes(m))return;
+ if(D.tx.some(t=>t.recId===r.id&&t.due.startsWith(m)))return;
+ D.tx.push({id:uid(),desc:r.desc,type:r.type,cat:r.cat,amount:r.amount,due:dueOf(m,r.day),paid:false,recId:r.id});n++});if(n)save()}
+const stat=t=>t.paid?'pago':t.due<todayS()?'atrasado':'pendente';
+const SL={pago:'Pago',pendente:'Pendente',atrasado:'Atrasado'};
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.remove('on'),2800)}
+function mv(k){ym=addM(ym,k);R()}
+const TABS={painel:'Painel',lanc:'Lançamentos',cartoes:'Cartões',rec:'Recorrentes'};
+function R(){for(let k=-5;k<=0;k++)gen(addM(ym,k));
+ $('#mn').textContent=mName(ym);
+ $('#nav').innerHTML=Object.entries(TABS).map(([k,v])=>`<button class="${k===tab?'on':''}" onclick="tab='${k}';R()">${v}</button>`).join('');
+ $('#v').innerHTML=({painel:vPainel,lanc:vLanc,cartoes:vCartoes,rec:vRec})[tab]()}
+const inM=m=>D.tx.filter(t=>t.due.startsWith(m));
+function vPainel(){const l=inM(ym),rc=l.filter(t=>t.type==='receita'),ds=l.filter(t=>t.type==='despesa');
+ const rT=sum(rc),dT=sum(ds),rP=sum(rc.filter(t=>t.paid)),dP=sum(ds.filter(t=>t.paid)),late=D.tx.filter(t=>stat(t)==='atrasado'&&t.type==='despesa');
+ const cats={};ds.forEach(t=>cats[t.cat]=(cats[t.cat]||0)+t.amount);const ce=Object.entries(cats).sort((a,b)=>b[1]-a[1]),mx=ce[0]?ce[0][1]:1;
+ const hs=[-5,-4,-3,-2,-1,0].map(k=>{const m=addM(ym,k),x=inM(m);return{m,r:sum(x.filter(t=>t.type==='receita')),d:sum(x.filter(t=>t.type==='despesa'))}}),hm=Math.max(1,...hs.flatMap(h=>[h.r,h.d]));
+ const up=l.filter(t=>!t.paid).sort((a,b)=>a.due.localeCompare(b.due)).slice(0,6);
+ return bk()+`<div class="g4">
+ <div class="c k"><h3>Receitas</h3><b class="ok">${money(rT)}</b><small>${money(rP)} recebido</small></div>
+ <div class="c k"><h3>Despesas</h3><b class="bad">${money(dT)}</b><small>${money(dP)} pago</small></div>
+ <div class="c k"><h3>Saldo previsto</h3><b class="${rT-dT<0?'bad':'ok'}">${money(rT-dT)}</b><small>Em caixa: ${money(rP-dP)}</small></div>
+ <div class="c k"><h3>Em atraso</h3><b class="${late.length?'bad':''}">${money(sum(late))}</b><small>${late.length} despesa(s)</small></div></div>
+ <div class="g2"><div class="c"><h3>Despesas por categoria</h3>${ce.map(([k,v])=>`<div class="cat"><span>${esc(k)}</span><div class="pb"><i style="width:${v/mx*100}%"></i></div><b>${money(v)}</b></div>`).join('')||'<div class="empty">Sem despesas neste mês.</div>'}</div>
+ <div class="c"><h3>Últimos 6 meses</h3><div class="hist">${hs.map(h=>`<div><span><i style="height:${h.r/hm*100}%;background:var(--ok)" title="Receitas ${money(h.r)}"></i><i style="height:${h.d/hm*100}%;background:var(--bad)" title="Despesas ${money(h.d)}"></i></span><small>${mName(h.m).slice(0,3)}</small></div>`).join('')}</div><small class="hint"><span class="ok">■</span> receitas &nbsp;<span class="bad">■</span> despesas</small></div></div>
+ <div class="c"><h3>Próximos vencimentos</h3>${up.map(rowT).join('')||'<div class="empty">Nada pendente neste mês.</div>'}</div>`}
+function rowT(t){const s=stat(t),c=t.cardId&&D.cards.find(x=>x.id===t.cardId);
+ return`<div class="row"><div class="m"><b>${esc(t.desc)}${c?`<span class="tag">${esc(c.name)}${t.of>1?' '+t.n+'/'+t.of:''}</span>`:''}${t.recId?'<span class="tag">recorrente</span>':''}</b><small>${fmtD(t.due)} · ${esc(t.cat)}</small></div>
+ <b class="${t.type==='receita'?'ok':'bad'}">${t.type==='receita'?'+':'−'} ${money(t.amount)}</b>
+ <button class="tag st ${s}" onclick="tog('${t.id}')" title="Alternar status">${SL[s]}</button>
+ <button class="btn s" onclick="txForm('${t.id}')">Editar</button><button class="btn s d" onclick="del('${t.id}')" aria-label="Excluir">✕</button></div>`}
+function vLanc(){const q=F.q.toLowerCase(),l=inM(ym).filter(t=>(!q||t.desc.toLowerCase().includes(q))&&(!F.type||t.type===F.type)&&(!F.st||stat(t)===F.st)).sort((a,b)=>a.due.localeCompare(b.due));
+ return`<div class="bar"><input style="flex:1;min-width:160px" placeholder="Buscar descrição…" value="${esc(F.q)}" oninput="F.q=this.value;Lr()" aria-label="Buscar">
+ <select onchange="F.type=this.value;R()" aria-label="Tipo"><option value="">Todos os tipos</option><option value="receita" ${F.type==='receita'?'selected':''}>Receitas</option><option value="despesa" ${F.type==='despesa'?'selected':''}>Despesas</option></select>
+ <select onchange="F.st=this.value;R()" aria-label="Status"><option value="">Todos os status</option>${Object.entries(SL).map(([k,v])=>`<option value="${k}" ${F.st===k?'selected':''}>${v}</option>`).join('')}</select></div>
+ <div class="c" id="lst" style="margin-top:12px">${l.map(rowT).join('')||'<div class="empty">Nenhum lançamento encontrado.</div>'}</div>
+ <p class="hint">${l.length} item(ns) · Receitas ${money(sum(l.filter(t=>t.type==='receita')))} · Despesas ${money(sum(l.filter(t=>t.type==='despesa')))}</p>`}
+function Lr(){const p=$('#v');const pos=document.activeElement;R();const i=p.querySelector('input');i.focus();i.setSelectionRange(i.value.length,i.value.length)}
+function vCartoes(){return`<div class="bar"><button class="btn p" onclick="cardForm()">+ Novo cartão</button><span class="hint">Compras parceladas entram automaticamente na fatura de cada mês.</span></div>`+
+ (D.cards.map(c=>{const used=sum(D.tx.filter(t=>t.cardId===c.id&&!t.paid)),inv=D.tx.filter(t=>t.cardId===c.id&&t.due.startsWith(ym)),tot=sum(inv),paid=inv.length&&inv.every(t=>t.paid),pc=c.limit?Math.min(100,used/c.limit*100):0;
+ return`<div class="c" style="margin-top:12px"><div class="bar"><b style="font-size:16px">${esc(c.name)}</b><span class="hint">fecha dia ${c.close} · vence dia ${c.due}</span><span class="sp"></span>
+ <button class="btn s" onclick="txForm('','${c.id}')">+ Compra</button><button class="btn s" onclick="cardForm('${c.id}')">Editar</button><button class="btn s d" onclick="delCard('${c.id}')">Excluir</button></div>
+ <small>Limite usado ${money(used)} de ${money(c.limit)} · disponível ${money(c.limit-used)}</small><div class="pb"><i style="width:${pc}%;${pc>85?'background:var(--bad)':''}"></i></div>
+ <div class="bar" style="margin-top:8px"><b>Fatura de ${mName(ym)}: ${money(tot)}</b><span class="sp"></span>${inv.length?`<button class="btn s ${paid?'':'p'}" onclick="payInv('${c.id}',${!paid})">${paid?'Reabrir fatura':'Marcar fatura como paga'}</button>`:''}</div>
+ ${inv.sort((a,b)=>a.due.localeCompare(b.due)).map(rowT).join('')||'<div class="empty">Sem compras nesta fatura.</div>'}</div>`}).join('')||'<div class="c empty" style="margin-top:12px">Cadastre um cartão para lançar compras parceladas.</div>')}
+function vRec(){return`<div class="bar"><button class="btn p" onclick="recForm()">+ Nova recorrência</button><span class="hint">Geradas automaticamente a cada mês, dentro do período definido.</span></div>
+ <div class="c" style="margin-top:12px">${D.rec.map(r=>`<div class="row"><div class="m"><b>${esc(r.desc)}${r.on?'':'<span class="tag st pendente">pausada</span>'}</b><small>${r.type==='receita'?'Receita':'Despesa'} · ${esc(r.cat)} · dia ${r.day} · ${mName(r.start)} → ${r.end?mName(r.end):'sem fim'}</small></div>
+ <b class="${r.type==='receita'?'ok':'bad'}">${money(r.amount)}</b><button class="btn s" onclick="togRec('${r.id}')">${r.on?'Pausar':'Ativar'}</button><button class="btn s" onclick="recForm('${r.id}')">Editar</button><button class="btn s d" onclick="delRec('${r.id}')" aria-label="Excluir">✕</button></div>`).join('')||'<div class="empty">Nenhuma recorrência cadastrada.</div>'}</div>`}
+/* ---------- diálogos ---------- */
+const dlg=$('#dlg');
+const opt=(a,s)=>a.map(x=>`<option ${x===s?'selected':''}>${esc(x)}</option>`).join('');
+function openD(h){dlg.innerHTML=h;if(!dlg.open)dlg.showModal()}
+const closeD=()=>dlg.close();
+function ask(msg,btns){openD(`<div class="dc"><h2>Confirmar</h2><p>${msg}</p><div class="acts"><button class="btn" onclick="closeD()">Cancelar</button>${btns.map((b,i)=>`<button class="btn ${b[2]||'d'}" data-i="${i}">${b[0]}</button>`).join('')}</div></div>`);
+ dlg.querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>{closeD();btns[b.dataset.i][1]()})}
+function catSel(f){const s=f.elements.cat;s.innerHTML=opt(CATS[f.elements.type.value]);}
+function txForm(id,cardId){const t=id&&D.tx.find(x=>x.id===id);
+ openD(`<form id="f"><h2>${t?'Editar lançamento':'Novo lançamento'}</h2>
+ <div class="two"><label>Tipo<select name="type" onchange="catSel(this.form)"><option value="despesa" ${t&&t.type==='receita'?'':'selected'}>Despesa</option><option value="receita" ${t&&t.type==='receita'?'selected':''}>Receita</option></select></label>
+ <label>Categoria<select name="cat">${opt(CATS[t?t.type:'despesa'],t&&t.cat)}</select></label></div>
+ <label>Descrição<input name="desc" required maxlength="80" value="${esc(t?t.desc:'')}"></label>
+ <div class="two"><label>Valor (R$)<input name="amount" type="number" step="0.01" min="0.01" required value="${t?t.amount:''}"></label>
+ <label>${t?'Vencimento':'Data'}<input name="due" type="date" required value="${t?t.due:todayS()}"></label></div>
+ ${!t&&D.cards.length?`<div class="two"><label>Forma de pagamento<select name="card" onchange="this.form.n.disabled=!this.value"><option value="">À vista / débito</option>${D.cards.map(c=>`<option value="${c.id}" ${c.id===cardId?'selected':''}>Cartão ${esc(c.name)}</option>`).join('')}</select></label>
+ <label>Parcelas<input name="n" type="number" min="1" max="48" value="1" ${cardId?'':'disabled'}></label></div><span class="hint">No cartão, o valor informado é o total e a data é a da compra.</span>`:''}
+ <label style="display:flex;gap:8px;align-items:center;flex-direction:row"><input type="checkbox" name="paid" style="width:auto" ${t&&t.paid?'checked':''}> Já pago / recebido</label>
+ <div class="acts"><button type="button" class="btn" onclick="closeD()">Cancelar</button><button class="btn p">Salvar</button></div></form>`);
+ $('#f').onsubmit=e=>{e.preventDefault();const f=Object.fromEntries(new FormData(e.target)),amt=Math.round(parseFloat(f.amount)*100)/100;
+  if(!(amt>0))return;const base={desc:f.desc.trim(),type:f.type,cat:f.cat,paid:!!f.paid};
+  if(t){Object.assign(t,base,{amount:amt,due:f.due});if(t.paid&&!t.paidDate)t.paidDate=todayS();if(!t.paid)delete t.paidDate}
+  else if(f.card&&f.type==='despesa'){const c=D.cards.find(x=>x.id===f.card),n=Math.max(1,Math.min(48,+f.n||1)),first=invDue(c,f.due),bm=first.slice(0,7),day=+first.slice(8),g=uid(),part=Math.floor(amt*100/n)/100;
+   for(let k=0;k<n;k++){const m=addM(bm,k);D.tx.push({...base,id:uid(),amount:k===n-1?Math.round((amt-part*(n-1))*100)/100:part,due:dueOf(m,day),paid:false,cardId:c.id,grp:g,n:k+1,of:n})}
+   toast(n>1?`${n} parcelas lançadas`:'Compra lançada na fatura')}
+  else D.tx.push({...base,id:uid(),amount:amt,due:f.due});
+  save();closeD();R();toast('Salvo!')}}
+function invDue(c,date){const d=+date.slice(8);let m=date.slice(0,7);if(d>c.close)m=addM(m,1);if(c.due<=c.close)m=addM(m,1);return dueOf(m,c.due)}
+function tog(id){const t=D.tx.find(x=>x.id===id);t.paid=!t.paid;t.paid?t.paidDate=todayS():delete t.paidDate;save();R()}
+function del(id){const t=D.tx.find(x=>x.id===id),rm=f=>{D.tx=D.tx.filter(x=>!f(x));save();R();toast('Excluído')};
+ if(t.grp&&t.of>1)return ask(`Excluir a parcela ${t.n}/${t.of} de <b>${esc(t.desc)}</b>?`,[['Só esta',()=>rm(x=>x.id===id)],['Esta e as seguintes',()=>rm(x=>x.grp===t.grp&&x.n>=t.n)],['Todas',()=>rm(x=>x.grp===t.grp)]]);
+ if(t.recId)return ask(`Excluir <b>${esc(t.desc)}</b> deste mês? A recorrência continua nos demais meses.`,[['Excluir',()=>{const r=D.rec.find(x=>x.id===t.recId);if(r)r.skip.push(t.due.slice(0,7));rm(x=>x.id===id)}]]);
+ ask(`Excluir <b>${esc(t.desc)}</b>?`,[['Excluir',()=>rm(x=>x.id===id)]])}
+function payInv(cid,v){D.tx.filter(t=>t.cardId===cid&&t.due.startsWith(ym)).forEach(t=>{t.paid=v;v?t.paidDate=todayS():delete t.paidDate});save();R();toast(v?'Fatura paga':'Fatura reaberta')}
+function cardForm(id){const c=D.cards.find(x=>x.id===id)||{};
+ openD(`<form id="f"><h2>${id?'Editar':'Novo'} cartão</h2><label>Nome<input name="name" required maxlength="30" value="${esc(c.name||'')}" placeholder="Ex.: Nubank"></label>
+ <label>Limite (R$)<input name="limit" type="number" step="0.01" min="0" required value="${c.limit??''}"></label>
+ <div class="two"><label>Dia de fechamento<input name="close" type="number" min="1" max="31" required value="${c.close||''}"></label><label>Dia de vencimento<input name="due" type="number" min="1" max="31" required value="${c.due||''}"></label></div>
+ <div class="acts"><button type="button" class="btn" onclick="closeD()">Cancelar</button><button class="btn p">Salvar</button></div></form>`);
+ $('#f').onsubmit=e=>{e.preventDefault();const f=Object.fromEntries(new FormData(e.target)),o={name:f.name.trim(),limit:+f.limit,close:+f.close,due:+f.due};
+  id?Object.assign(c,o):D.cards.push({id:uid(),...o});save();closeD();R()}}
+function delCard(id){ask('Excluir este cartão e <b>todas</b> as compras dele?',[['Excluir',()=>{D.cards=D.cards.filter(c=>c.id!==id);D.tx=D.tx.filter(t=>t.cardId!==id);save();R()}]])}
+function recForm(id){const r=D.rec.find(x=>x.id===id)||{type:'despesa',start:ym,day:5,on:true};
+ openD(`<form id="f"><h2>${id?'Editar':'Nova'} recorrência</h2>
+ <div class="two"><label>Tipo<select name="type" onchange="catSel(this.form)"><option value="despesa" ${r.type==='despesa'?'selected':''}>Despesa</option><option value="receita" ${r.type==='receita'?'selected':''}>Receita</option></select></label>
+ <label>Categoria<select name="cat">${opt(CATS[r.type],r.cat)}</select></label></div>
+ <label>Descrição<input name="desc" required maxlength="80" value="${esc(r.desc||'')}"></label>
+ <div class="two"><label>Valor (R$)<input name="amount" type="number" step="0.01" min="0.01" required value="${r.amount??''}"></label><label>Dia do vencimento<input name="day" type="number" min="1" max="31" required value="${r.day}"></label></div>
+ <div class="two"><label>Início<input name="start" type="month" required value="${r.start}"></label><label>Fim (opcional)<input name="end" type="month" value="${r.end||''}"></label></div>
+ <span class="hint">${id?'Alterações atualizam os lançamentos pendentes a partir do mês atual.':'Dias maiores que o mês (ex.: 31) usam o último dia.'}</span>
+ <div class="acts"><button type="button" class="btn" onclick="closeD()">Cancelar</button><button class="btn p">Salvar</button></div></form>`);
+ $('#f').onsubmit=e=>{e.preventDefault();const f=Object.fromEntries(new FormData(e.target));
+  if(f.end&&f.end<f.start){toast('O fim deve ser após o início');return}
+  const o={type:f.type,cat:f.cat,desc:f.desc.trim(),amount:Math.round(parseFloat(f.amount)*100)/100,day:+f.day,start:f.start,end:f.end};
+  let x=r;if(id)Object.assign(r,o);else{x={id:uid(),on:true,skip:[],...o};D.rec.push(x)}
+  D.tx=D.tx.filter(t=>!(t.recId===x.id&&!t.paid&&t.due.slice(0,7)>=cur()&&(t.due.slice(0,7)<x.start||(x.end&&t.due.slice(0,7)>x.end))));
+  D.tx.filter(t=>t.recId===x.id&&!t.paid&&t.due.slice(0,7)>=cur()).forEach(t=>Object.assign(t,{desc:x.desc,type:x.type,cat:x.cat,amount:x.amount,due:dueOf(t.due.slice(0,7),x.day)}));
+  save();closeD();R();toast('Recorrência salva')}}
+function togRec(id){const r=D.rec.find(x=>x.id===id);r.on=!r.on;save();R()}
+function delRec(id){ask('Excluir a recorrência? Lançamentos <b>pendentes</b> futuros serão removidos; os já pagos permanecem.',[['Excluir',()=>{D.rec=D.rec.filter(r=>r.id!==id);D.tx=D.tx.filter(t=>!(t.recId===id&&!t.paid&&t.due.slice(0,7)>=cur()));D.tx.forEach(t=>{if(t.recId===id)delete t.recId});save();R()}]])}
+/* ---------- dados ---------- */
+function bk(){let l=0;try{l=+localStorage.getItem('budget_lastbackup')||0}catch(e){}
+ if(!D.tx.length||Date.now()-l<7*864e5)return'';return`<div class="bk"><span>${l?'Seu último backup foi há '+Math.floor((Date.now()-l)/864e5)+' dias.':'Você ainda não fez backup.'}</span><button class="btn s" onclick="menu()">Fazer backup</button></div>`}
+function menu(){openD(`<div class="dc"><h2>Dados</h2><p class="hint">Tudo fica salvo neste navegador. Faça backups periódicos.</p>
+ <button class="btn" onclick="exp()">Baixar backup (.json)</button>${navigator.canShare&&navigator.canShare({files:[mk()]})?'<button class="btn p" onclick="shr()">Salvar no Drive / compartilhar backup</button>':''}
+ <label class="btn" style="cursor:pointer;color:var(--tx);font-size:14px;text-align:center">Importar backup<input type="file" accept=".json" hidden onchange="imp(event)"></label>
+ <button class="btn d" onclick="clr()">Apagar todos os dados</button><div class="acts"><button class="btn" onclick="closeD()">Fechar</button></div></div>`)}
+function mk(){return new File([JSON.stringify(D,null,1)],'orcamento_'+todayS()+'.json',{type:'application/json'})}
+function done(){try{localStorage.setItem('budget_lastbackup',Date.now())}catch(e){}R()}
+async function shr(){const f=mk();try{await navigator.share({files:[f],title:'Backup Finanças'});done();toast('Backup compartilhado')}catch(e){}}
+function exp(){done();const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(D,null,1)],{type:'application/json'}));a.download='orcamento_'+todayS()+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);toast('Backup exportado')}
+function imp(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{let d=JSON.parse(r.result);if(Array.isArray(d))d=migrate(d);
+ if(!d||!Array.isArray(d.tx))throw 0;d.tx=d.tx.filter(t=>t&&t.due&&t.desc&&isFinite(t.amount));
+ ask(`Substituir os dados atuais por ${d.tx.length} lançamento(s) do arquivo?`,[['Substituir',()=>{D={tx:d.tx,rec:d.rec||[],cards:d.cards||[]};save();R();toast('Dados importados')},'p']])}catch(x){toast('Arquivo de backup inválido')}};r.readAsText(f)}
+function clr(){ask('Apagar <b>todos</b> os lançamentos, recorrências e cartões? Não há como desfazer.',[['Apagar tudo',()=>{D={tx:[],rec:[],cards:[]};save();R();toast('Dados apagados')}]])}
+load();R();
+try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
+if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+</script></body></html>
